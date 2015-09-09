@@ -6,6 +6,8 @@ import org.apache.commons.math3.ml.clustering.{KMeansPlusPlusClusterer, DoublePo
 import org.apache.commons.math3.ml.distance.EuclideanDistance
 import org.apache.commons.math3.stat.descriptive.moment.{Mean, Variance, Skewness}
 
+import scala.math.pow
+
 /* 
 compute a unique signature ( aka hashcode ) per image (png/jpg/gif)
 If image A => sig A
@@ -45,7 +47,7 @@ object cbir_new extends App {
     def normalize(arr: Array[Array[Double]]) = {
         val st = (0 until 36).map{i => stats(arr(i))}.flatten
         val sigs_normal = arr.map{i => 
-                                (0 until 36).map{j => (i(j) - st(3 * j)) / st(3 * j + 1)}.toArray}.toArray
+                                (0 until 36).map{j => (i(j) - st(3 * j)) / pow(st(3 * j + 1),.5)}.toArray}.toArray
         sigs_normal
     }
 
