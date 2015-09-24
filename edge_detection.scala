@@ -39,7 +39,8 @@ object edge_detection extends App {
         new_mat 
     }
 
-    //Subtract matricies (convert negatives to 0)
+    //Subtract matricies
+    //I also converted negatives to 0 and multiplied by 4. This made the edges more visible.
     def subtract_matricies(img_mat_1: Array[Array[Double]],img_mat_2: Array[Array[Double]]) = {
         val w = img_mat_1.size
         val h = img_mat_1(0).size
